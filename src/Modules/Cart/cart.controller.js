@@ -67,7 +67,6 @@ let cart = await Cart.findOneAndUpdate({user:req.user._id},
     cart.totalCartprice = cart.cartItems.reduce((prev,item)=>prev+=item.quantity*item.price , 0)
     if(cart.discount){
         cart.totalCartpriceAfterdiscount=cart.totalCartprice - (cart.totalCartprice * cart.discount)/100
-
     }
 await cart.save()
 cart || next(new AppError('Cart not found',404))
